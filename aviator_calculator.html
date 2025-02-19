@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator Win Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+        input, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        button {
+            background-color: #e94560;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff2e63;
+        }
+        .result {
+            font-size: 20px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Aviator Win Calculator</h2>
+        <label for="bet">Enter Bet Amount ($):</label>
+        <input type="number" id="bet" placeholder="Enter your bet" min="1" max="1000">
+        
+        <label for="multiplier">Enter Multiplier (x):</label>
+        <input type="number" id="multiplier" placeholder="Enter multiplier" step="0.1" min="1" max="100">
+        
+        <button onclick="calculateWin()">Calculate Win</button>
+        
+        <div class="result" id="result"></div>
+    </div>
+    
+    <script>
+        function calculateWin() {
+            let bet = parseFloat(document.getElementById('bet').value);
+            let multiplier = parseFloat(document.getElementById('multiplier').value);
+            
+            if (isNaN(bet) || isNaN(multiplier) || bet <= 0 || multiplier < 1) {
+                document.getElementById('result').innerHTML = "Please enter valid numbers.";
+                return;
+            }
+            
+            let winAmount = bet * multiplier;
+            document.getElementById('result').innerHTML = `Your potential win: $${winAmount.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
